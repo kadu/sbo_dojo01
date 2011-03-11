@@ -52,66 +52,53 @@ int teste_checa_valor(void) {
 	int erro =0;
 	int resultado = 0;
 	char *e;
+	e = "";
 	
 	resultado = checaValor(11);	
-	printf("Resultado = %i",resultado);
 	if(resultado!=1) {
 		erro++;
-		e = "10 != " + resultado;
+		strcat(e,"10 != " + resultado);
 	}
 	
 	resultado = checaValor(20);
 	if(resultado!=1) {
 		erro++;
-		e = "20 != " + resultado;
+		strcat(e,"20 != " + resultado);
 	}
 	   
 	resultado = checaValor(30);
 	if(resultado!=1) {
 		erro++;
-		e = "30 != " + resultado;
+		strcat(e,"30 != " + resultado);
 	}
 	
 	resultado = checaValor(55);
 	if(resultado!=0) {
 		erro++;
-		e = "55 != " + resultado;
+		strcat(e,"55 != " + resultado);
 	}
-	
-
 	
 	resultado = checaValor(999);
 	if(resultado!=0) {
 		erro++;
-		e = "999 != " + resultado;
+		strcat(e,"999 != " + resultado);
 	}
 	
-	if(strcmp(e,"")!=0) {	
+	if(erro!=0) {	
 		printf("%s",e);	 
 		return(0);
 	}
 	return(1);
 }
 
-/*
-void oqueDigitou(int notas){
-    int notas
-    if(){
-        printf("");
-//      nnotas="1,10";
-//      nnotas="1,10;1,20";              
-    } else {
-        printf("");
-    }               
-}
-*/
 main (){
 	int valor=0;
 	
 	// Faz todos os testes antes de continuar	
-	if(teste_entra_10_retorna_10() 
-	   && teste_entra_20_retorna_1_20()
-	   && teste_checa_valor() ) {
+	if(!(teste_entra_10_retorna_10() 
+			&& teste_entra_20_retorna_1_20()
+			&& teste_checa_valor())) {
+
 	   printf("Erro ");
 	   return(0);
 	}
