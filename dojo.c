@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 //int notas [] = {10,20,50,100};
@@ -50,42 +51,48 @@ int checaValor(int valor) {
 
 int teste_checa_valor(void) {
 	int erro =0;
+	int contaTestes = 0;
 	int resultado = 0;
-	char *e;
-	e = "";
+	char e[500];
 	
-	resultado = checaValor(11);	
+	resultado = checaValor(10);	
 	if(resultado!=1) {
 		erro++;
-		strcat(e,"10 != " + resultado);
+		contaTestes++;		
+		sprintf(e,"[Teste %d] - Valor 10 nao OK \n",contaTestes);
 	}
 	
 	resultado = checaValor(20);
 	if(resultado!=1) {
 		erro++;
-		strcat(e,"20 != " + resultado);
+		contaTestes++;
+		sprintf(e,"[Teste %d] - Valor 20 nao OK \n",contaTestes);
 	}
 	   
 	resultado = checaValor(30);
-	if(resultado!=1) {
+	if(resultado!=1) {		
 		erro++;
-		strcat(e,"30 != " + resultado);
+		contaTestes++;
+		sprintf(e,"[Teste %d] - Valor 30 nao OK \n",contaTestes);		
 	}
 	
 	resultado = checaValor(55);
-	if(resultado!=0) {
+	if(resultado!=0) {		
 		erro++;
-		strcat(e,"55 != " + resultado);
+		contaTestes++;
+		sprintf(e,"[Teste %d] - Valor 55 nao OK \n",contaTestes);		
 	}
 	
 	resultado = checaValor(999);
 	if(resultado!=0) {
 		erro++;
-		strcat(e,"999 != " + resultado);
+		contaTestes++;
+		sprintf(e,"[Teste %d] - Valor 999 nao OK \n",contaTestes);
 	}
 	
 	if(erro!=0) {	
-		printf("%s",e);	 
+		printf("Houve %i erro(s): \n",erro);	 
+		printf("%s\n",e);
 		return(0);
 	}
 	return(1);
@@ -97,9 +104,7 @@ main (){
 	// Faz todos os testes antes de continuar	
 	if(!(teste_entra_10_retorna_10() 
 			&& teste_entra_20_retorna_1_20()
-			&& teste_checa_valor())) {
-
-	   printf("Erro ");
+			&& teste_checa_valor())) {	   
 	   return(0);
 	}
 	
@@ -116,4 +121,6 @@ main (){
 		printf("\n\n");
 		system("pause");
 	#endif
+		
+	return(1);
 }
